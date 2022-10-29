@@ -1,0 +1,12 @@
+C:\Project\SourceCode\SDICMS\SDICMS\Common_Objects_V2\bin\Debug\net6.0\Common_Objects_V2.deps.json
+C:\Project\SourceCode\SDICMS\SDICMS\Common_Objects_V2\bin\Debug\net6.0\Common_Objects_V2.dll
+C:\Project\SourceCode\SDICMS\SDICMS\Common_Objects_V2\bin\Debug\net6.0\Common_Objects_V2.pdb
+C:\Project\SourceCode\SDICMS\SDICMS\Common_Objects_V2\obj\Debug\net6.0\Common_Objects_V2.csproj.AssemblyReference.cache
+C:\Project\SourceCode\SDICMS\SDICMS\Common_Objects_V2\obj\Debug\net6.0\Common_Objects_V2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Project\SourceCode\SDICMS\SDICMS\Common_Objects_V2\obj\Debug\net6.0\Common_Objects_V2.AssemblyInfoInputs.cache
+C:\Project\SourceCode\SDICMS\SDICMS\Common_Objects_V2\obj\Debug\net6.0\Common_Objects_V2.AssemblyInfo.cs
+C:\Project\SourceCode\SDICMS\SDICMS\Common_Objects_V2\obj\Debug\net6.0\Common_Objects_V2.csproj.CoreCompileInputs.cache
+C:\Project\SourceCode\SDICMS\SDICMS\Common_Objects_V2\obj\Debug\net6.0\Common_Objects_V2.dll
+C:\Project\SourceCode\SDICMS\SDICMS\Common_Objects_V2\obj\Debug\net6.0\refint\Common_Objects_V2.dll
+C:\Project\SourceCode\SDICMS\SDICMS\Common_Objects_V2\obj\Debug\net6.0\Common_Objects_V2.pdb
+C:\Project\SourceCode\SDICMS\SDICMS\Common_Objects_V2\obj\Debug\net6.0\ref\Common_Objects_V2.dll

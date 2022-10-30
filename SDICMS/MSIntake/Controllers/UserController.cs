@@ -17,10 +17,10 @@ namespace MSIntake.Controllers
             _usersService = usersService;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Add([FromBody] UserDto userDto)
+        [HttpPost("Add")]
+        public async Task<IActionResult> Add([FromBody] RegisterUser registerUser)
         {
-            var userResults = await _usersService.CreateUser(userDto);
+            var userResults = await _usersService.CreateUser(registerUser);
             return Ok(new { message = $"Successfully created.", data = userResults });
         }
 
@@ -57,6 +57,13 @@ namespace MSIntake.Controllers
         {
             var userResults = await _usersService.DeleteUser(userDto);
             return Ok(new { message = $"Successfully deleted.", data = userResults });
+        }
+
+        [HttpPut("ResetPassword")]
+        public async Task<IActionResult> ResetPassword([FromBody] ChangePassword changePassword)
+        {
+            var userResults = await _usersService.ResetPassword(changePassword);
+            return Ok(new { message = $"Password successfully updated.", data = userResults });
         }
     }
 }

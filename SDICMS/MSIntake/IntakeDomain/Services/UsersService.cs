@@ -1,9 +1,11 @@
-﻿using AutoMapper;
+﻿using BCryptNet = BCrypt.Net.BCrypt;
+using AutoMapper;
 using Common_Objects_V2.Intake.Models;
 using Common_Objects_V2.Intake.Repository.Interface;
 using MSIntake.IntakeDomain.Model.Dtos;
 using MSIntake.IntakeDomain.Services.Interface;
 using MSIntake.Shared.Helpers;
+using MSIntake.IntakeDomain.Model.Requests;
 
 namespace MSIntake.IntakeDomain.Services
 {
@@ -31,24 +33,27 @@ namespace MSIntake.IntakeDomain.Services
             return _mapper.Map<UserDto>(responseUser);
         }
 
-        public async Task<UserDto> CreateUser(UserDto userDto)
+        public async Task<UserDto> CreateUser(RegisterUser registerUser)
         {
-            var responseUserExist = await _userRepository.GetUserDetailsByUsername(userDto.User_Name);
+            var responseUserExist = await _userRepository.GetUserDetailsByUsername(registerUser.User_Name);
             if (responseUserExist == null)
                 throw new AppException($"Username {responseUserExist.User_Name} exist.");
 
+            if (registerUser.Password != registerUser.ConfirmPassword)
+                throw new AppException($"Confirm password not match.");
+
             var requestUser = new User {
-                First_Name = userDto.First_Name,
-                Last_Name = userDto.Last_Name,
-                Initials = userDto.Initials,
-                Email_Address = userDto.Email_Address,
-                User_Name = userDto.User_Name,
-                //Password = userDto.Password,
-                Date_Last_Login = userDto.Date_Last_Login,
-                Created_By = userDto.Created_By,
-                Date_Last_Modified = userDto.Date_Last_Modified,
-                Modified_By = userDto.Modified_By,
-                AccountStatus = userDto.AccountStatus
+                First_Name = registerUser.First_Name,
+                Last_Name = registerUser.Last_Name,
+                Initials = registerUser.Initials,
+                Email_Address = registerUser.Email_Address,
+                User_Name = registerUser.User_Name,
+                Password = BCryptNet.HashPassword(registerUser.Password),
+                Date_Last_Login = registerUser.Date_Last_Login,
+                Created_By = registerUser.Created_By,
+                Date_Last_Modified = registerUser.Date_Last_Modified,
+                Modified_By = registerUser.Modified_By,
+                AccountStatus = registerUser.AccountStatus
             };
 
             var responseUser = await _userRepository.CreateUser(requestUser);
@@ -68,11 +73,37 @@ namespace MSIntake.IntakeDomain.Services
             return _mapper.Map<UserDto>(responseUpdatedRole);
         }
 
-        public Task<UserDto> ChangePassword(UserDto userDto)
+        public async Task<UserDto> AuthenticateUser(Credentials credentials)
         {
-            throw new NotImplementedException();
+            var userResponse = await _userRepository.GetUserDetailsByUsername(credentials.Username);
+
+            if (userResponse == null)
+                throw new AppException($"Username {credentials.Username} not found.");
+
+            if (!userResponse.Is_Active || userResponse.Is_Deleted)
+                throw new AppException($"User not active.");
+            
+            if (!BCryptNet.Verify(credentials.Password, userResponse.Password)) //PasswordHash
+                throw new AppException("Password is incorrect");
+
+            return _mapper.Map<UserDto>(userResponse);
         }
 
+        public async Task<UserDto> ResetPassword(ChangePassword changePassword)
+        {
+            if (changePassword.Password != changePassword.ConfirmPassword)
+                throw new AppException($"Confirm password not match.");
+
+            var responseUser = await _userRepository.GetUserDetailsById(changePassword.UserId);
+            if (responseUser == null)
+                throw new AppException($"Username not found.");
+
+            responseUser.PasswordExpiryDate = DateTime.Now.AddMonths(12);
+            responseUser.Password = BCryptNet.HashPassword(changePassword.Password);
+
+            var responseUpdatedRole = await _userRepository.UpdateUser(responseUser);
+            return _mapper.Map<UserDto>(responseUpdatedRole);
+        }
 
         public async Task<UserDto> DeleteUser(UserDto userDto)
         {

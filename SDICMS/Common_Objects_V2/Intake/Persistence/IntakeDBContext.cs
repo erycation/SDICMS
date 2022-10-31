@@ -14,7 +14,9 @@ namespace Common_Objects_V2.Intake.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UserRole>()
-        .HasKey(c => new { c.User_Id, c.Role_Id });
+                    .HasKey(c => new { c.User_Id, c.Role_Id });
+            modelBuilder.Entity<MenuAccessRole>()
+                    .HasKey(c => new { c.Menu_Access_Id, c.Role_Id });
             //modelBuilder.Entity<StockCountSheetReportDto>().HasNoKey();
             //modelBuilder.Entity<StockTakingDto>().HasNoKey();
         }
@@ -33,7 +35,9 @@ namespace Common_Objects_V2.Intake.Persistence
         public virtual DbSet<LocalMunicipality> LocalMunicipalities { get; set; }
         public virtual DbSet<Town> Towns { get; set; }
         public virtual DbSet<Organization> Organizations { get; set; }
-
+        public virtual DbSet<MenuAccess> MenuAccess { get; set; }
+        public virtual DbSet<MenuAccessRole> MenuAccessRoles { get; set; }
+        
 
     }
 }

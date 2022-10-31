@@ -23,6 +23,12 @@ namespace MSIntake.IntakeDomain.Services
             return _mapper.Map<LocalMunicipalityDto>(responseLocalMunicipality);
         }
 
+        public async Task<LocalMunicipalityDto> GetLocalMunicipalityByName(int districtId, string description)
+        {
+            var responseLocalMunicipality = await _localMunicipalityRepository.GetLocalMunicipalityByName(districtId, description);
+            return _mapper.Map<LocalMunicipalityDto>(responseLocalMunicipality);
+        }
+
         public async Task<List<LocalMunicipalityDto>> GetLocalMunicipalitiesByDistrictId(int districtId)
         {
             var responseLocalMunicipality = await _localMunicipalityRepository.GetLocalMunicipalitiesByDistrictId(districtId);

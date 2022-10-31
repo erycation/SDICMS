@@ -5,6 +5,7 @@ namespace Common_Objects_V2.Intake.Repository.Interface
     public interface ILocalMunicipalityRepository
     {
         Task<LocalMunicipality> GetLocalMunicipalityById(int localMunicipalityId);
+        Task<List<LocalMunicipality>> GetLocalMunicipalityByName(int districtId,string description);
         Task<List<LocalMunicipality>> GetLocalMunicipalitiesByDistrictId(int districtId);
     }
 }

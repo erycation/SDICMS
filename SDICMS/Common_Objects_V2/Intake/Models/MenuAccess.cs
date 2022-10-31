@@ -3,26 +3,23 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Common_Objects_V2.Intake.Models
 {
-    [Table("apl_Role")]
-    public class Role
+    [Table("apl_Menu_Access")]
+    public class MenuAccess
     {
-
-        public Role()
+        public MenuAccess()
         {
-            this.Groups = new HashSet<Group>();
-            this.UserRoles = new HashSet<UserRole>();
             this.MenuAccessRoles = new HashSet<MenuAccessRole>();
         }
-
         [Key]
-        public int Role_Id { get; set; }
+        public int Menu_Access_Id { get; set; }
         public string Description { get; set; }
+        public bool IsModule { get; set; }
+        public int? ParentId { get; set; }
+        public string Route { get; set; }
         public bool Is_Active { get; set; } = true;
         public bool Is_Deleted { get; set; } = false;
         public DateTime Date_Created { get; set; } = DateTime.Now;
-        public virtual ICollection<Group> Groups { get; set; }
-        public virtual ICollection<UserRole> UserRoles { get; set; }
+        public string Created_By { get; set; }
         public virtual ICollection<MenuAccessRole> MenuAccessRoles { get; set; }
-        
     }
 }

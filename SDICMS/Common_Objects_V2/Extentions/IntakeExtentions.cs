@@ -25,6 +25,8 @@ namespace Common_Objects_V2.Extentions
             services.AddScoped<IAreaRepository, AreaRepository>();
             services.AddScoped<ITownRepository, TownRepository>();
             services.AddScoped<IOrganizationRepository, OrganizationRepository>();
+            services.AddScoped<IMenuAccessRepository, MenuAccessRepository>();
+            services.AddScoped<IMenuAccessRoleRepository, MenuAccessRoleRepository>();
         }
     }
 }

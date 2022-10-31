@@ -21,6 +21,9 @@ namespace MSIntake.Extentions
             CreateMap<LocalMunicipality, LocalMunicipalityDto>();
             CreateMap<Town, TownDto>();
             CreateMap<Organization, OrganizationDto>();
+            CreateMap<MenuAccess, MenuAccessDto>();
+            CreateMap<MenuAccessRole, MenuAccessRoleDto>();
+            
         }
     }
 }

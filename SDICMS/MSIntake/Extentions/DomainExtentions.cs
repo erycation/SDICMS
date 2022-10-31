@@ -20,8 +20,12 @@ namespace MSIntake.Extentions
             services.AddScoped<ILocalMunicipalityService, LocalMunicipalityService>();
             services.AddScoped<IOrganizationService, OrganizationService>();
             services.AddScoped<ITownService, TownService>();
+            services.AddScoped<IMenuAccessService, MenuAccessService>();
+            services.AddScoped<IMenuAccessRoleService, MenuAccessRoleService>();
+        
 
-            var mapperConfig = new MapperConfiguration(mc =>
+
+        var mapperConfig = new MapperConfiguration(mc =>
                             {
                                 mc.AddProfile(new MappersExtentions());
                             });

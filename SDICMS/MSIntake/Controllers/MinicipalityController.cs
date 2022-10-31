@@ -28,6 +28,13 @@ namespace MSIntake.Controllers
             return Ok(localMunicipalityResults);
         }
 
+        [HttpGet("Local/Name/{districtId}/{description}")]
+        public async Task<IActionResult> GetLocalMunicipalityByName(int districtId, string description)
+        {
+            var localMunicipalityResults = await _localMunicipalityService.GetLocalMunicipalityByName(districtId, description);
+            return Ok(localMunicipalityResults);
+        }
+
         [HttpGet("Local/District/{districtId}")]
         public async Task<IActionResult> GetLocalMunicipalitiesByDistrictId(int districtId)
         {

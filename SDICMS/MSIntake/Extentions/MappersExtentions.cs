@@ -31,6 +31,9 @@ namespace MSIntake.Extentions
             CreateMap<School, SchoolDto>();
             CreateMap<Grade, GradeDto>();
             CreateMap<SkinColor, SkinColorDto>();
+            CreateMap<Address, AddressDto>()
+                 .ForMember(a => a.AddressTypeDto, r => r.MapFrom(at => at.AddressType));
+            CreateMap<AddressType, AddressTypeDto>();
 
         }
     }

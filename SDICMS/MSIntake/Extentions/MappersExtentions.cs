@@ -10,7 +10,7 @@ namespace MSIntake.Extentions
         {
 
             CreateMap<User, UserDto>()
-                .ForMember(s => s.UserRoleDtos, r => r.MapFrom(ur => ur.UserRoles));
+                .ForMember(s => s.UserRoleDtos, r => r.MapFrom(ur => ur.UserRoles));           
             CreateMap<Role, RoleDto>();
             CreateMap<UserRole, UserRoleDto>()
                 .ForMember(s => s.RoleDto, r => r.MapFrom(ur => ur.Role));
@@ -23,7 +23,14 @@ namespace MSIntake.Extentions
             CreateMap<Organization, OrganizationDto>();
             CreateMap<MenuAccess, MenuAccessDto>();
             CreateMap<MenuAccessRole, MenuAccessRoleDto>();
-            
+            CreateMap<Gender, GenderDto>();
+            CreateMap<MaritalStatus, MaritalStatusDto>();
+            CreateMap<Race, RaceDto>();
+            CreateMap<Religion, ReligionDto>();
+            CreateMap<SchoolType, SchoolTypeDto>();
+            CreateMap<School, SchoolDto>();
+            CreateMap<Grade, GradeDto>();
+
         }
     }
 }

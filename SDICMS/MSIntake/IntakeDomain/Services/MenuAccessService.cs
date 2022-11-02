@@ -12,7 +12,7 @@ namespace MSIntake.IntakeDomain.Services
     {
         private readonly IMapper _mapper;
         private readonly IMenuAccessRepository _menuAccessRepository;
-        private readonly IMenuAccessRoleService _menuAccessRoleService;
+        private readonly IMenuAccessRoleService _menuAccessRoleService; 
 
         public MenuAccessService(IMapper mapper,
                             IMenuAccessRepository menuAccessRepository,
@@ -20,7 +20,7 @@ namespace MSIntake.IntakeDomain.Services
         {
             _mapper = mapper;
             _menuAccessRepository = menuAccessRepository;
-            _menuAccessRoleService = menuAccessRoleService; 
+            _menuAccessRoleService = menuAccessRoleService;
         }
 
         public async Task<MenuAccessDto> CreateMenuAccess(RegisterMenuAccess registerMenuAccess)
@@ -42,7 +42,7 @@ namespace MSIntake.IntakeDomain.Services
                 registerMenuAccess.ParentId = null;
             }
             //check if roles are more that one
-            if(registerMenuAccess.RolesDto == null)
+            if (registerMenuAccess.RolesDto == null)
                 throw new AppException($"Menu roles required.");
 
             var menuAccess = new MenuAccess
@@ -55,7 +55,7 @@ namespace MSIntake.IntakeDomain.Services
             };
 
             var responseSaveMenu = await _menuAccessRepository.CreateMenuAccess(menuAccess);
-            if(responseSaveMenu != null)
+            if (responseSaveMenu != null)
             {
                 var menuAccessRolesDto = new List<MenuAccessRoleDto>();
                 foreach (var roleDto in registerMenuAccess.RolesDto)
@@ -64,5 +64,11 @@ namespace MSIntake.IntakeDomain.Services
             }
             return _mapper.Map<MenuAccessDto>(responseSaveMenu);
         }
+
+        public async Task<List<MenuAccessDto>> GetMenuAccessByRolesId(List<int> roleIds)
+        {
+            var responseMenuAccessRoles = await _menuAccessRepository.GetMenuAccessByRolesId(roleIds);
+             return _mapper.Map<List<MenuAccessDto>>(responseMenuAccessRoles);
+          }
     }
 }

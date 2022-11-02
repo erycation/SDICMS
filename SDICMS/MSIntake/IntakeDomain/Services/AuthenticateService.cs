@@ -9,17 +9,20 @@ namespace MSIntake.IntakeDomain.Services
 
         private readonly IUsersService _userService;
         private readonly IAuthManager _authManager;
-
+        private readonly IMenuAccessService _menuAccessService;
+        
         public AuthenticateService(IUsersService userService,
-                                     IAuthManager authManager)
+                                     IAuthManager authManager,
+                                     IMenuAccessService menuAccessService)
         {
             _userService = userService;
             _authManager = authManager;
+            _menuAccessService = menuAccessService;
         }
 
         public async Task<AuthToken> Login(Credentials credentials)
         {
-
+            List<int> roleIds;
             var authToken = new AuthToken();
             var userResponse = await _userService.AuthenticateUser(credentials);
 
@@ -31,7 +34,26 @@ namespace MSIntake.IntakeDomain.Services
             authToken.Token = _authManager.Authenticate(credentials.Username);
             authToken.UserRoleDtos = userResponse.UserRoleDtos;
 
+            roleIds = userResponse.UserRoleDtos.Select(r => r.Role_Id).ToList();
+
+            authToken.MenuAccessDtos = await _menuAccessService.GetMenuAccessByRolesId(roleIds);
+
             return authToken;
+        }
+
+        private List<MenuAccessDto> GetMenus(List<MenuAccessDto> menus)
+        {
+            var menuAccessDtos = new List<MenuAccessDto>();
+            var menuModules = menus.Where(m => m.IsModule).ToList();
+
+            foreach(var module in menuModules)
+            {
+                menuAccessDtos.Add(module);
+
+            }
+
+            return menuAccessDtos;
+
         }
     }
 }

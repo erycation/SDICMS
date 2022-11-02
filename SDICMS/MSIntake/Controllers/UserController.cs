@@ -10,7 +10,7 @@ namespace MSIntake.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private IUsersService _usersService;
+        private readonly IUsersService _usersService;
 
         public UserController(IUsersService usersService)
         {

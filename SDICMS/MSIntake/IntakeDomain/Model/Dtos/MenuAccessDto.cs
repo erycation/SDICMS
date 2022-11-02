@@ -7,9 +7,10 @@
         public bool IsModule { get; set; }
         public int? ParentId { get; set; }
         public string Route { get; set; }
-        public bool Is_Active { get; set; } = true;
-        public bool Is_Deleted { get; set; } = false;
-        public DateTime Date_Created { get; set; } = DateTime.Now;
+        public bool Is_Active { get; set; } =    true;
+        public bool Is_Deleted { get; set; } =  false;
+        public DateTime Date_Created { get; set; } =  DateTime.Now;
         public string Created_By { get; set; }
+        public virtual ICollection<MenuAccessDto> MenuAccessDtos { get; set; }
     }
 }

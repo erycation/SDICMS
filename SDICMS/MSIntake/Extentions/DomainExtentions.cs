@@ -11,7 +11,7 @@ namespace MSIntake.Extentions
 
             services.AddSingleton<IAuthManager>(new AuthManager(configuration.GetSection("JWTSettings:SecretKey").Value));
             services.AddScoped<IAuthenticateService, AuthenticateService>();
-            services.AddScoped<IUsersService, UsersService>();
+            services.AddScoped<IUsersService, UsersService>();           
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IGroupService, GroupService>();
             services.AddScoped<ICountryService, CountryService>();
@@ -22,10 +22,14 @@ namespace MSIntake.Extentions
             services.AddScoped<ITownService, TownService>();
             services.AddScoped<IMenuAccessService, MenuAccessService>();
             services.AddScoped<IMenuAccessRoleService, MenuAccessRoleService>();
-        
+            services.AddScoped<IGenderService, GenderService>();
+            services.AddScoped<IMaritalStatusService, MaritalStatusService>();
+            services.AddScoped<IRaceService, RaceService>();
+            services.AddScoped<IReligionService, ReligionService>();
+            services.AddScoped<ISchoolTypeService, SchoolTypeService>();
+            
 
-
-        var mapperConfig = new MapperConfiguration(mc =>
+            var mapperConfig = new MapperConfiguration(mc =>
                             {
                                 mc.AddProfile(new MappersExtentions());
                             });

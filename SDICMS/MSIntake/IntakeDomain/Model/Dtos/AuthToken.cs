@@ -10,5 +10,6 @@
         public string Message { get; set; }
         public string Token { get; set; }
         public virtual ICollection<UserRoleDto> UserRoleDtos { get; set; }
+        public virtual ICollection<MenuAccessDto> MenuAccessDtos { get; set; }
     }
 }

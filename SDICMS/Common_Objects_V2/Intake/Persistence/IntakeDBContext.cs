@@ -22,6 +22,7 @@ namespace Common_Objects_V2.Intake.Persistence
         }
 
         public virtual DbSet<User> Users { get; set; }
+        
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }        
         public virtual DbSet<Group> Groups { get; set; }
@@ -37,6 +38,13 @@ namespace Common_Objects_V2.Intake.Persistence
         public virtual DbSet<Organization> Organizations { get; set; }
         public virtual DbSet<MenuAccess> MenuAccess { get; set; }
         public virtual DbSet<MenuAccessRole> MenuAccessRoles { get; set; }
+        public virtual DbSet<Gender> Genders { get; set; }
+        public virtual DbSet<Grade> Grades { get; set; }
+        public virtual DbSet<Race> Races { get; set; }
+        public virtual DbSet<Religion> Religions { get; set; }
+        public virtual DbSet<SchoolType> SchoolTypes { get; set; }
+        public virtual DbSet<School> Schools { get; set; }
+        public virtual DbSet<MaritalStatus> MaritalStatuss { get; set; }
         
 
     }

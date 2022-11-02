@@ -10,5 +10,6 @@ namespace Common_Objects_V2.Intake.Repository.Interface
         Task<List<MenuAccess>> GetMenuAccessByParentId(int parentId);
         Task<MenuAccess> CreateMenuAccess(MenuAccess menuAccess);
         Task<MenuAccess> UpdateMenuAccess(MenuAccess menuAccess);
+        Task<List<MenuAccess>> GetMenuAccessByRolesId(List<int> roleIds);
     }
 }

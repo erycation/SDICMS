@@ -18,9 +18,8 @@ namespace Common_Objects_V2.Intake.Repository
             foreach(var menuAccessRole in menuAccessRoles)
             {
                 await _intakeDBContext.MenuAccessRoles.AddAsync(menuAccessRole);
-                
-            }
-            await _intakeDBContext.SaveChangesAsync();
+                await _intakeDBContext.SaveChangesAsync();
+            }            
         }
 
         public async Task<MenuAccessRole> CreateMenuAccess(MenuAccessRole menuAccessRole)
@@ -46,34 +45,5 @@ namespace Common_Objects_V2.Intake.Repository
         {
             throw new NotImplementedException();
         }
-
-        //public async Task<MenuAccess> CreateMenuAccess(MenuAccess menuAccess)
-        //{
-        //    await _intakeDBContext.MenuAccess.AddAsync(menuAccess);
-        //    await _intakeDBContext.SaveChangesAsync();
-        //    return menuAccess;
-        //}
-
-        //public async Task<MenuAccess> GetMenuAccessByName(string description)
-        //{
-        //    return await _intakeDBContext.MenuAccess.SingleOrDefaultAsync(m => m.Description == description);
-        //}
-
-        //public async Task<List<MenuAccess>> GetMenuAccessByParentId(int parentId)
-        //{
-        //    return await _intakeDBContext.MenuAccess.Where(m => m.ParentId == parentId).ToListAsync();
-        //}
-
-        //public async Task<List<MenuAccess>> GetModules()
-        //{
-        //    return await _intakeDBContext.MenuAccess.Where(m => m.IsModule).ToListAsync();
-        //}
-
-        //public async Task<MenuAccess> UpdateMenuAccess(MenuAccess menuAccess)
-        //{
-        //    _intakeDBContext.MenuAccess.Update(menuAccess);
-        //    await _intakeDBContext.SaveChangesAsync();
-        //    return menuAccess;
-        //}
     }
 }

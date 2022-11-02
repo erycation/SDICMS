@@ -14,7 +14,7 @@ namespace Common_Objects_V2.Extentions
 
             services.AddDbContext<IntakeDBContext>(options =>
             options.UseLazyLoadingProxies().UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();            
             services.AddScoped<IRoleRepository, RoleRepository>();
             services.AddScoped<IGroupRepository, GroupRepository>();
             services.AddScoped<ICountryRepository, CountryRepository>();
@@ -27,6 +27,17 @@ namespace Common_Objects_V2.Extentions
             services.AddScoped<IOrganizationRepository, OrganizationRepository>();
             services.AddScoped<IMenuAccessRepository, MenuAccessRepository>();
             services.AddScoped<IMenuAccessRoleRepository, MenuAccessRoleRepository>();
+            services.AddScoped<IGenderRepository, GenderRepository>();
+            services.AddScoped<IRaceRepository, RaceRepository>();
+            services.AddScoped<IReligionRepository, ReligionRepository>();
+            services.AddScoped<ISchoolTypeRepository, SchoolTypeRepository>();
+            services.AddScoped<ISchoolRepository, SchoolRepository>();
+            services.AddScoped<IGradeRepository, GradeRepository>();
+            services.AddScoped<IMaritalStatusRepository, MaritalStatusRepository>();
+
+ 
+
+
         }
     }
 }

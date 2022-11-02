@@ -27,7 +27,7 @@ namespace Common_Objects_V2.Intake.Repository
             return await _intakeDBContext.Schools.Where(s => s.School_Type_Id == schoolTypeId).ToListAsync();
         }
 
-        public async Task<School> GetSchoolTypeById(int schoolId)
+        public async Task<School> GetSchoolById(int schoolId)
         {
             return await _intakeDBContext.Schools.SingleOrDefaultAsync(s => s.School_Id == schoolId);
         }

@@ -30,6 +30,7 @@ namespace MSIntake.Extentions
             CreateMap<SchoolType, SchoolTypeDto>();
             CreateMap<School, SchoolDto>();
             CreateMap<Grade, GradeDto>();
+            CreateMap<SkinColor, SkinColorDto>();
 
         }
     }

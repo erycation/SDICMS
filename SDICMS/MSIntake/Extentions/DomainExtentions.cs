@@ -27,9 +27,12 @@ namespace MSIntake.Extentions
             services.AddScoped<IRaceService, RaceService>();
             services.AddScoped<IReligionService, ReligionService>();
             services.AddScoped<ISchoolTypeService, SchoolTypeService>();
-            
+            services.AddScoped<ISchoolService, SchoolService>();
+            services.AddScoped<IGradeService, GradeService>();
+            services.AddScoped<ISkinColorService, SkinColorService>();
+         
 
-            var mapperConfig = new MapperConfiguration(mc =>
+        var mapperConfig = new MapperConfiguration(mc =>
                             {
                                 mc.AddProfile(new MappersExtentions());
                             });

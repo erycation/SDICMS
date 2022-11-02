@@ -34,9 +34,7 @@ namespace Common_Objects_V2.Extentions
             services.AddScoped<ISchoolRepository, SchoolRepository>();
             services.AddScoped<IGradeRepository, GradeRepository>();
             services.AddScoped<IMaritalStatusRepository, MaritalStatusRepository>();
-
- 
-
+            services.AddScoped<ISkinColorRepository, SkinColorRepository>();
 
         }
     }

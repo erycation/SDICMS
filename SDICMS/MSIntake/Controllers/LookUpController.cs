@@ -12,16 +12,19 @@ namespace MSIntake.Controllers
         private readonly IMaritalStatusService _maritalStatusService;
         private readonly IRaceService _raceService;
         private readonly IReligionService _religionService;
+        private readonly ISkinColorService _skinColorService;
 
         public LookUpController(IGenderService genderService,
                                 IMaritalStatusService maritalStatusService,
                                 IRaceService raceService,
-                                IReligionService religionService)
+                                IReligionService religionService,
+                                ISkinColorService skinColorService)
         {
             _genderService = genderService;
             _maritalStatusService = maritalStatusService;
             _raceService = raceService;
             _religionService = religionService;
+            _skinColorService = skinColorService;
         }
 
         [HttpGet("Gender")]
@@ -57,6 +60,13 @@ namespace MSIntake.Controllers
         {
             var religionResults = await _religionService.GetAllReligions();
             return Ok(religionResults);
+        }
+
+        [HttpGet("SkinColor")]
+        public async Task<IActionResult> GetAllSkinColors()
+        {
+            var skinColorResults = await _skinColorService.GetAllSkinColors();
+            return Ok(skinColorResults);
         }
     }
 }

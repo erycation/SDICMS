@@ -46,9 +46,12 @@ namespace Common_Objects_V2.Intake.Persistence
         public virtual DbSet<School> Schools { get; set; }
         public virtual DbSet<MaritalStatus> MaritalStatuss { get; set; }
         public virtual DbSet<SkinColor> SkinColors { get; set; }
-
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<AddressType> AddressTypes { get; set; }
+        public virtual DbSet<Allergy> Allergies { get; set; }
+        public virtual DbSet<AuditTrial> AuditTrials { get; set; }
+        public virtual DbSet<ContactType> ContactTypes { get; set; }
+        public virtual DbSet<Citizenship> Citizenships { get; set; }
 
-    }
+    }    
 }

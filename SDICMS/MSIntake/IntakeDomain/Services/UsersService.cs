@@ -6,6 +6,7 @@ using MSIntake.IntakeDomain.Model.Dtos;
 using MSIntake.IntakeDomain.Services.Interface;
 using MSIntake.Shared.Helpers;
 using MSIntake.IntakeDomain.Model.Requests;
+using MSIntake.Shared.Enum;
 
 namespace MSIntake.IntakeDomain.Services
 {
@@ -53,7 +54,8 @@ namespace MSIntake.IntakeDomain.Services
                 Created_By = registerUser.Created_By,
                 Date_Last_Modified = registerUser.Date_Last_Modified,
                 Modified_By = registerUser.Modified_By,
-                AccountStatus = registerUser.AccountStatus
+                AccountStatus = AccountStatus.Open.ToString()
+
             };
 
             var responseUser = await _userRepository.CreateUser(requestUser);
@@ -80,11 +82,14 @@ namespace MSIntake.IntakeDomain.Services
             if (userResponse == null)
                 throw new AppException($"Username {credentials.Username} not found.");
 
+            if (userResponse.Tries > 3)
+                throw new AppException($"User account is locked.");
+
             if (!userResponse.Is_Active || userResponse.Is_Deleted)
                 throw new AppException($"User not active.");
-            
-            if (!BCryptNet.Verify(credentials.Password, userResponse.Password)) //PasswordHash
-                throw new AppException("Password is incorrect");
+
+            if (!BCryptNet.Verify(credentials.Password, userResponse.Password))
+                throw new AppException($"Incorrect password.{UserTriesLoginCount(userResponse)} attempts remaining.");
 
             return _mapper.Map<UserDto>(userResponse);
         }
@@ -99,6 +104,8 @@ namespace MSIntake.IntakeDomain.Services
                 throw new AppException($"Username not found.");
 
             responseUser.PasswordExpiryDate = DateTime.Now.AddMonths(12);
+            responseUser.Tries = 0;
+            responseUser.AccountStatus = AccountStatus.Open.ToString();
             responseUser.Password = BCryptNet.HashPassword(changePassword.Password);
 
             var responseUpdatedRole = await _userRepository.UpdateUser(responseUser);
@@ -133,5 +140,18 @@ namespace MSIntake.IntakeDomain.Services
             var responseUpdatedRole = await _userRepository.UpdateUser(responseUser);
             return _mapper.Map<UserDto>(responseUpdatedRole);
         }
+
+        #region Private_Methods
+
+        private int UserTriesLoginCount(User user)
+        {
+            int numberOfTries = 4;
+            user.Tries = user.Tries + 1;
+            user.AccountStatus = numberOfTries == user.Tries ? AccountStatus.Closed.ToString() : AccountStatus.Open.ToString();
+            _userRepository.UpdateUser(user);
+            return (numberOfTries - (int)user.Tries);
+        }
+
+        #endregion
     }
 }

@@ -35,6 +35,11 @@ namespace MSIntake.Extentions
                  .ForMember(a => a.AddressTypeDto, r => r.MapFrom(at => at.AddressType));
             CreateMap<AddressType, AddressTypeDto>();
 
+            CreateMap<Allergy, AllergyDto>();
+            CreateMap<ContactType, ContactTypeDto>();
+            CreateMap<Citizenship, CitizenshipDto>();
+            CreateMap<AuditTrial, AuditTrialDto>();
+
         }
     }
 }

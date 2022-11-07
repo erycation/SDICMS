@@ -37,6 +37,11 @@ namespace Common_Objects_V2.Extentions
             services.AddScoped<ISkinColorRepository, SkinColorRepository>();
             services.AddScoped<IAddressRepository, AddressRepository>();
             services.AddScoped<IAddressTypeRepository, AddressTypeRepository>();
+            services.AddScoped<IAllergyRepository, AllergyRepository>();
+            services.AddScoped<IAuditTrialRepository, AuditTrialRepository>();
+            services.AddScoped<IContactTypeRepository, ContactTypeRepository>();
+            services.AddScoped<ICitizenshipRepository, CitizenshipRepository>();
+
         }
     }
 }

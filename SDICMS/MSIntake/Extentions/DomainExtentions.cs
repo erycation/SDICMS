@@ -32,11 +32,15 @@ namespace MSIntake.Extentions
             services.AddScoped<ISkinColorService, SkinColorService>();
             services.AddScoped<IAddressTypeService, AddressTypeService>();
             services.AddScoped<IAddressService, AddressService>();
+            services.AddScoped<IAllergyService, AllergyService>();
+            services.AddScoped<IContactTypeService, ContactTypeService>();
+            services.AddScoped<ICitizenshipService, CitizenshipService>();
+            services.AddScoped<IAuditTrialService, AuditTrialService>();
 
             var mapperConfig = new MapperConfiguration(mc =>
-                                 {
-                                     mc.AddProfile(new MappersExtentions());
-                                 });
+                                     {
+                                         mc.AddProfile(new MappersExtentions());
+                                     });
 
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);

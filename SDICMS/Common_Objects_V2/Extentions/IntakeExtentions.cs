@@ -41,7 +41,9 @@ namespace Common_Objects_V2.Extentions
             services.AddScoped<IAuditTrialRepository, AuditTrialRepository>();
             services.AddScoped<IContactTypeRepository, ContactTypeRepository>();
             services.AddScoped<ICitizenshipRepository, CitizenshipRepository>();
-
+            services.AddScoped<IPopulationGroupRepository, PopulationGroupRepository>();
+            services.AddScoped<IRelationshipTypeRepository, RelationshipTypeRepository>();
+            services.AddScoped<IIncomeRangeRepository, IncomeRangeRepository>();
         }
     }
 }

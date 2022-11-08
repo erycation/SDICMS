@@ -36,6 +36,9 @@ namespace MSIntake.Extentions
             services.AddScoped<IContactTypeService, ContactTypeService>();
             services.AddScoped<ICitizenshipService, CitizenshipService>();
             services.AddScoped<IAuditTrialService, AuditTrialService>();
+            services.AddScoped<IPopulationGroupService, PopulationGroupService>();
+            services.AddScoped<IRelationshipTypeService, RelationshipTypeService>();
+            services.AddScoped<IIncomeRangeService, IncomeRangeService>();
 
             var mapperConfig = new MapperConfiguration(mc =>
                                      {

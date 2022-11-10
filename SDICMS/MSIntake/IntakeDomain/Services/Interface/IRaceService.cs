@@ -3,7 +3,8 @@
 namespace MSIntake.IntakeDomain.Services.Interface
 {
     public interface IRaceService
-    {
+    {       
         Task<List<RaceDto>> GetAllRaces();
+        Task<RaceDto> GetRaceById(int raceId);
     }
 }

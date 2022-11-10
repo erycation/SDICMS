@@ -41,6 +41,11 @@ namespace MSIntake.Extentions
             CreateMap<PopulationGroup, PopulationGroupDto>();
             CreateMap<RelationshipType, RelationshipTypeDto>();
             CreateMap<IncomeRange, IncomeRangeDto>();
+            CreateMap<Disability, DisabilityDto>();
+            CreateMap<DisabilityType, DisabilityTypeDto>()
+               .ForMember(d => d.DisabilityDto, r => r.MapFrom(ur => ur.Disability));
+            CreateMap<Decease, DeceaseDto>();
+            CreateMap<Department, DepartmentDto>();
 
         }
     }

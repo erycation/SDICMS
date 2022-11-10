@@ -19,6 +19,10 @@ namespace MSIntake.Controllers
         private readonly IPopulationGroupService _populationGroupService;
         private readonly IRelationshipTypeService _relationshipTypeService;
         private readonly IIncomeRangeService _incomeRangeService;
+        private readonly IDisabilityService _disabilityService;
+        private readonly IDisabilityTypeService _disabilityTypeService;
+        private readonly IDeceaseService _deceaseService;
+        private readonly IDepartmentService _departmentService; 
 
         public LookUpController(IGenderService genderService,
                                 IMaritalStatusService maritalStatusService,
@@ -30,7 +34,11 @@ namespace MSIntake.Controllers
                                 ICitizenshipService citizenshipService,
                                 IPopulationGroupService populationGroupService,
                                 IRelationshipTypeService relationshipTypeService,
-                                IIncomeRangeService incomeRangeService)
+                                IIncomeRangeService incomeRangeService,
+                                IDisabilityService disabilityService,
+                                IDisabilityTypeService disabilityTypeService,
+                                IDeceaseService deceaseService,
+                                IDepartmentService departmentService)
         {
             _genderService = genderService;
             _maritalStatusService = maritalStatusService;
@@ -43,6 +51,10 @@ namespace MSIntake.Controllers
             _populationGroupService = populationGroupService;
             _relationshipTypeService = relationshipTypeService;
             _incomeRangeService = incomeRangeService;
+            _disabilityService = disabilityService;
+            _disabilityTypeService = disabilityTypeService;
+            _deceaseService = deceaseService;
+            _departmentService = departmentService; 
         }
 
         [HttpGet("Gender")]
@@ -50,19 +62,19 @@ namespace MSIntake.Controllers
         {
             var genderResults = await _genderService.GetGenders();
             return Ok(genderResults);
+        }        
+
+        [HttpGet("MaritalStatus")]
+        public async Task<IActionResult> GetMaritalStatus()
+        {
+            var maritalStatusResults = await _maritalStatusService.GetMaritalStatus();
+            return Ok(maritalStatusResults);
         }
 
         [HttpGet("MaritalStatus/Get/{maritalStatusId}")]
         public async Task<IActionResult> GetMaritalStatus(int maritalStatusId)
         {
             var maritalStatusResults = await _maritalStatusService.GetMaritalStatuById(maritalStatusId);
-            return Ok(maritalStatusResults);
-        }
-
-        [HttpGet("MaritalStatus")]
-        public async Task<IActionResult> GetMaritalStatus()
-        {
-            var maritalStatusResults = await _maritalStatusService.GetMaritalStatus();
             return Ok(maritalStatusResults);
         }
 
@@ -73,10 +85,24 @@ namespace MSIntake.Controllers
             return Ok(raceResults);
         }
 
+        [HttpGet("Race/Get/{raceId}")]
+        public async Task<IActionResult> GetRaceById(int raceId)
+        {
+            var raceResults = await _raceService.GetRaceById(raceId);
+            return Ok(raceResults);
+        }
+
         [HttpGet("Religions")]
         public async Task<IActionResult> GetAllReligions()
         {
             var religionResults = await _religionService.GetAllReligions();
+            return Ok(religionResults);
+        }
+
+        [HttpGet("Religions/Get/{religionId}")]
+        public async Task<IActionResult> GetReligionById(int religionId)
+        {
+            var religionResults = await _religionService.GetReligionById(religionId);
             return Ok(religionResults);
         }
 
@@ -87,13 +113,6 @@ namespace MSIntake.Controllers
             return Ok(skinColorResults);
         }
 
-        [HttpGet("Allergy/Get/{allergyId}")]
-        public async Task<IActionResult> GetAllergyById(int allergyId)
-        {
-            var allergyResults = await _allergyService.GetAllergyById(allergyId);
-            return Ok(allergyResults);
-        }
-
         [HttpGet("Allergy")]
         public async Task<IActionResult> GetAllergies()
         {
@@ -101,11 +120,11 @@ namespace MSIntake.Controllers
             return Ok(allergyResults);
         }
 
-        [HttpGet("ContactType/Get/{contactTypeId}")]
-        public async Task<IActionResult> GetContactTypeById(int contactTypeId)
+        [HttpGet("Allergy/Get/{allergyId}")]
+        public async Task<IActionResult> GetAllergyById(int allergyId)
         {
-            var contactTypesResults = await _contactTypeService.GetContactTypeById(contactTypeId);
-            return Ok(contactTypesResults);
+            var allergyResults = await _allergyService.GetAllergyById(allergyId);
+            return Ok(allergyResults);
         }
 
         [HttpGet("ContactType")]
@@ -115,11 +134,11 @@ namespace MSIntake.Controllers
             return Ok(contactTypesResults);
         }
 
-        [HttpGet("Citizenship/Get/{citizenshipId}")]
-        public async Task<IActionResult> GetCitizenshipById(int citizenshipId)
+        [HttpGet("ContactType/Get/{contactTypeId}")]
+        public async Task<IActionResult> GetContactTypeById(int contactTypeId)
         {
-            var citizenshipResults = await _citizenshipService.GetCitizenshipById(citizenshipId);
-            return Ok(citizenshipResults);
+            var contactTypesResults = await _contactTypeService.GetContactTypeById(contactTypeId);
+            return Ok(contactTypesResults);
         }
 
         [HttpGet("Citizenship")]
@@ -129,11 +148,11 @@ namespace MSIntake.Controllers
             return Ok(citizenshipResults);
         }
 
-        [HttpGet("PopulationGroup/Get/{populationGroupId}")]
-        public async Task<IActionResult> GetPopulationGroupById(int populationGroupId)
+        [HttpGet("Citizenship/Get/{citizenshipId}")]
+        public async Task<IActionResult> GetCitizenshipById(int citizenshipId)
         {
-            var populationGroupResults = await _populationGroupService.GetPopulationGroupById(populationGroupId);
-            return Ok(populationGroupResults);
+            var citizenshipResults = await _citizenshipService.GetCitizenshipById(citizenshipId);
+            return Ok(citizenshipResults);
         }
 
         [HttpGet("PopulationGroup")]
@@ -143,12 +162,12 @@ namespace MSIntake.Controllers
             return Ok(populationGroupResults);
         }
 
-        [HttpGet("RelationshipType/Get/{relationshipTypeId}")]
-        public async Task<IActionResult> GetRelationshipTypeById(int relationshipTypeId)
+        [HttpGet("PopulationGroup/Get/{populationGroupId}")]
+        public async Task<IActionResult> GetPopulationGroupById(int populationGroupId)
         {
-            var relationshipTypeResults = await _relationshipTypeService.GetRelationshipTypeById(relationshipTypeId);
-            return Ok(relationshipTypeResults);
-        }
+            var populationGroupResults = await _populationGroupService.GetPopulationGroupById(populationGroupId);
+            return Ok(populationGroupResults);
+        }       
 
         [HttpGet("RelationshipType")]
         public async Task<IActionResult> GetRelationshipTypes()
@@ -157,11 +176,11 @@ namespace MSIntake.Controllers
             return Ok(relationshipTypeResults);
         }
 
-        [HttpGet("IncomeRange/Get/{incomeRangeId}")]
-        public async Task<IActionResult> GetIncomeRangeById(int incomeRangeId)
+        [HttpGet("RelationshipType/Get/{relationshipTypeId}")]
+        public async Task<IActionResult> GetRelationshipTypeById(int relationshipTypeId)
         {
-            var incomeRangeResults = await _incomeRangeService.GetIncomeRangeById(incomeRangeId);
-            return Ok(incomeRangeResults);
+            var relationshipTypeResults = await _relationshipTypeService.GetRelationshipTypeById(relationshipTypeId);
+            return Ok(relationshipTypeResults);
         }
 
         [HttpGet("IncomeRange")]
@@ -170,5 +189,76 @@ namespace MSIntake.Controllers
             var incomeRangeResults = await _incomeRangeService.GetIncomeRanges();
             return Ok(incomeRangeResults);
         }
+
+        [HttpGet("IncomeRange/Get/{incomeRangeId}")]
+        public async Task<IActionResult> GetIncomeRangeById(int incomeRangeId)
+        {
+            var incomeRangeResults = await _incomeRangeService.GetIncomeRangeById(incomeRangeId);
+            return Ok(incomeRangeResults);
+        }        
+
+        [HttpGet("Disability")]
+        public async Task<IActionResult> GetDisabilities()
+        {
+            var disabilityResults = await _disabilityService.GetDisabilities();
+            return Ok(disabilityResults);
+        }
+
+        [HttpGet("Disability/Get/{disabilityId}")]
+        public async Task<IActionResult> GetDisabilityById(int disabilityId)
+        {
+            var disabilityResults = await _disabilityService.GetDisabilityById(disabilityId);
+            return Ok(disabilityResults);
+        }
+
+        [HttpGet("DisabilityType")]
+        public async Task<IActionResult> GetDisabilityTypes()
+        {
+            var disabilityTypeResults = await _disabilityTypeService.GetDisabilityTypes();
+            return Ok(disabilityTypeResults);
+        }
+
+        [HttpGet("DisabilityType/Get/{disabilityTypeId}")]
+        public async Task<IActionResult> GetDisabilityTypeById(int disabilityTypeId)
+        {
+            var disabilityTypeResults = await _disabilityTypeService.GetDisabilityTypeById(disabilityTypeId);
+            return Ok(disabilityTypeResults);
+        }
+
+        [HttpGet("DisabilityType/GetAll/{disabilityId}")]
+        public async Task<IActionResult> GetDisabilityTypeByDisabilityId(int disabilityId)
+        {
+            var disabilityTypeResults = await _disabilityTypeService.GetDisabilityTypeByDisabilityId(disabilityId);
+            return Ok(disabilityTypeResults);
+        }
+
+        [HttpGet("Decease")]
+        public async Task<IActionResult> GetDeceases()
+        {
+            var deceaseResults = await _deceaseService.GetDeceases();
+            return Ok(deceaseResults);
+        }
+
+        [HttpGet("Decease/Get/{deceaseId}")]
+        public async Task<IActionResult> GetDeceaseById(int deceaseId)
+        {
+            var deceaseResults = await _deceaseService.GetDeceaseById(deceaseId);
+            return Ok(deceaseResults);
+        }
+
+        [HttpGet("Department")]
+        public async Task<IActionResult> GetDepartments()
+        {
+            var departmentResults = await _departmentService.GetDepartments();
+            return Ok(departmentResults);
+        }
+
+        [HttpGet("Department/Get/{departmentId}")]
+        public async Task<IActionResult> GetDepartmentById(int departmentId)
+        {
+            var departmentResults = await _departmentService.GetDepartmentById(departmentId);
+            return Ok(departmentResults);
+        }
+
     }
 }

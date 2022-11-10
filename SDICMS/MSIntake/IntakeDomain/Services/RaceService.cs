@@ -22,5 +22,11 @@ namespace MSIntake.IntakeDomain.Services
             var responseRace = await _raceRepository.GetAllRaces();
             return _mapper.Map<List<RaceDto>>(responseRace);
         }
+
+        public async Task<RaceDto> GetRaceById(int raceId)
+        {
+            var responseRace = await _raceRepository.GetRaceById(raceId);
+            return _mapper.Map<RaceDto>(responseRace);
+        }
     }
 }

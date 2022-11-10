@@ -22,5 +22,13 @@ namespace MSIntake.IntakeDomain.Services
             var responseReligion = await _religionRepository.GetAllReligions();
             return _mapper.Map<List<ReligionDto>>(responseReligion);
         }
+
+        public async Task<ReligionDto> GetReligionById(int religionId)
+        {
+            var responseReligion = await _religionRepository.GetReligionById(religionId);
+            return _mapper.Map<ReligionDto>(responseReligion);
+        }
+
+        
     }
 }

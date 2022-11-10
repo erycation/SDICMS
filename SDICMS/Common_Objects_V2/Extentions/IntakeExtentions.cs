@@ -44,6 +44,10 @@ namespace Common_Objects_V2.Extentions
             services.AddScoped<IPopulationGroupRepository, PopulationGroupRepository>();
             services.AddScoped<IRelationshipTypeRepository, RelationshipTypeRepository>();
             services.AddScoped<IIncomeRangeRepository, IncomeRangeRepository>();
+            services.AddScoped<IDisabilityRepository, DisabilityRepository>();
+            services.AddScoped<IDisabilityTypeRepository, DisabilityTypeRepository>();
+            services.AddScoped<IDeceaseRepository, DeceaseRepository>();
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
         }
     }
 }

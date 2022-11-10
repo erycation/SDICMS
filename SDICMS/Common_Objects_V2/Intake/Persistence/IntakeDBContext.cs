@@ -55,7 +55,10 @@ namespace Common_Objects_V2.Intake.Persistence
         public virtual DbSet<PopulationGroup> PopulationGroups { get; set; }
         public virtual DbSet<RelationshipType> RelationshipTypes { get; set; }
         public virtual DbSet<IncomeRange> IncomeRanges { get; set; }
-
-    }
-    
+        public virtual DbSet<Disability> Disabilities { get; set; }
+        public virtual DbSet<DisabilityType> DisabilityTypes { get; set; }
+        public virtual DbSet<Decease> Deceases { get; set; }
+        public virtual DbSet<Department> Departments { get; set; }
+        
+    }    
 }

@@ -10,7 +10,7 @@
         public string? Postal_Code { get; set; }
         public AddressTypeDto AddressTypeDto { get; set; }
         public string AddressType
-    {
+        {
             get
             {
                 return AddressTypeDto?.Description;

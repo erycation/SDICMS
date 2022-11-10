@@ -17,5 +17,10 @@ namespace Common_Objects_V2.Intake.Repository
         {
             return await _intakeDBContext.Religions.ToListAsync();
         }
+
+        public async Task<Religion> GetReligionById(int religionId)
+        {
+            return await _intakeDBContext.Religions.SingleOrDefaultAsync(r => r.Religion_Id == religionId);
+        }
     }
 }

@@ -17,5 +17,10 @@ namespace Common_Objects_V2.Intake.Repository
         {
             return await _intakeDBContext.Races.ToListAsync();
         }
+
+        public async Task<Race> GetRaceById(int raceId)
+        {
+            return await _intakeDBContext.Races.SingleOrDefaultAsync(r => r.Race_Id == raceId);
+        }
     }
 }

@@ -41,6 +41,29 @@ namespace MSIntake.IntakeDomain.Services
             return authToken;
         }
 
+        public async Task<AuthToken> MobileLogin(MobileCredentials mobileCredentials)
+        {
+            List<int> roleIds;
+            var authToken = new AuthToken();
+            var userResponse = await _userService.MobileAuthenticate(mobileCredentials);
+
+            authToken.Username = userResponse.User_Name;
+            authToken.UserId = userResponse.User_Id;
+            authToken.Success = true;
+            authToken.Firstname = userResponse.First_Name;
+            authToken.Surname = userResponse.Last_Name;
+            authToken.Token = _authManager.Authenticate(mobileCredentials.Username);
+            //authToken.UserRoleDtos = userResponse.UserRoleDtos;
+
+            //roleIds = userResponse.UserRoleDtos.Select(r => r.Role_Id).ToList();
+
+            //authToken.MenuAccessDtos = await _menuAccessService.GetMenuAccessByRolesId(roleIds);
+
+            return authToken;
+        }
+
+        #region PrivcateMethod
+
         private List<MenuAccessDto> GetMenus(List<MenuAccessDto> menus)
         {
             var menuAccessDtos = new List<MenuAccessDto>();
@@ -55,6 +78,8 @@ namespace MSIntake.IntakeDomain.Services
             return menuAccessDtos;
 
         }
+
+        #endregion
     }
 }
 

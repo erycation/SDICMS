@@ -11,6 +11,7 @@ namespace MSIntake.IntakeDomain.Services.Interface
         Task<UserDto> CreateUser(RegisterUser registerUser);
         Task<UserDto> UpdateUser(UserDto userDto);
         Task<UserDto> AuthenticateUser(Credentials credentials);
+        Task<UserDto> MobileAuthenticate(MobileCredentials mobileCredentials);
         Task<UserDto> ResetPassword(ChangePassword changePassword);
         Task<UserDto> ActivateUser(UserDto userDto);
         Task<UserDto> DeleteUser(UserDto userDto);

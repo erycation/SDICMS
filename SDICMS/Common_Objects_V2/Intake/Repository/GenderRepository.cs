@@ -17,5 +17,10 @@ namespace Common_Objects_V2.Intake.Repository
         {
             return await _intakeDBContext.Genders.ToListAsync();
         }
+
+        public async Task<Gender> GetGenderById(int genderId)
+        {
+            return await _intakeDBContext.Genders.SingleOrDefaultAsync(g => g.Gender_Id == genderId);
+        }
     }
 }

@@ -26,5 +26,16 @@ namespace MSIntake.Controllers
 
             return Ok(token);
         }
+
+        [HttpPost("Mobile")]
+        public async Task<IActionResult> MobileLogin([FromBody] MobileCredentials mobileCredentials)
+        {
+            var token = await _authenticateService.MobileLogin(mobileCredentials);
+
+            if (!token.Success)
+                return BadRequest(new { message = token.Message });
+
+            return Ok(token);
+        }
     }
 }

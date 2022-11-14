@@ -94,6 +94,25 @@ namespace MSIntake.IntakeDomain.Services
             return _mapper.Map<UserDto>(userResponse);
         }
 
+        public async Task<UserDto> MobileAuthenticate(MobileCredentials mobileCredentials)
+        {
+            var userResponse = await _userRepository.GetUserDetailsByUsername(mobileCredentials.Username);
+
+            if (userResponse == null)
+                throw new AppException($"Username {mobileCredentials.Username} not found.");
+
+            if (userResponse.Tries > 3)
+                throw new AppException($"User account is locked.");
+
+            if (!userResponse.Is_Active || userResponse.Is_Deleted)
+                throw new AppException($"User not active.");
+            //Verify Pin Here
+            //if (!BCryptNet.Verify(mobileCredentials.Password, userResponse.Password))
+            //    throw new AppException($"Incorrect password.{UserTriesLoginCount(userResponse)} attempts remaining.");
+
+            return _mapper.Map<UserDto>(userResponse);
+        }
+
         public async Task<UserDto> ResetPassword(ChangePassword changePassword)
         {
             if (changePassword.Password != changePassword.ConfirmPassword)

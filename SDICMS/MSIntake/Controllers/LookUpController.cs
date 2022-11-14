@@ -62,7 +62,14 @@ namespace MSIntake.Controllers
         {
             var genderResults = await _genderService.GetGenders();
             return Ok(genderResults);
-        }        
+        }
+
+        [HttpGet("Gender/Get/{genderId}")]
+        public async Task<IActionResult> GetGenderById(int genderId)
+        {
+            var genderResults = await _genderService.GetGenderById(genderId);
+            return Ok(genderResults);
+        }
 
         [HttpGet("MaritalStatus")]
         public async Task<IActionResult> GetMaritalStatus()

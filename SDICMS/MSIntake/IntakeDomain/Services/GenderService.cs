@@ -22,5 +22,11 @@ namespace MSIntake.IntakeDomain.Services
             var responseGenders = await _genderRepository.GetGenders();
             return _mapper.Map<List<GenderDto>>(responseGenders);
         }
+
+        public async Task<GenderDto> GetGenderById(int genderId)
+        {
+            var responseGenders = await _genderRepository.GetGenderById(genderId);
+            return _mapper.Map<GenderDto>(responseGenders);
+        }
     }
 }

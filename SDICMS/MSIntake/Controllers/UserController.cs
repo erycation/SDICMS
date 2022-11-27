@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MSIntake.IntakeDomain.Model.Dtos;
 using MSIntake.IntakeDomain.Model.Requests;
@@ -6,6 +7,7 @@ using MSIntake.IntakeDomain.Services.Interface;
 
 namespace MSIntake.Controllers
 {
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -37,6 +39,14 @@ namespace MSIntake.Controllers
             var userResults = await _usersService.GetUserDetailsByUsername(username);
             return Ok(userResults);
         }
+
+
+        //[HttpGet("Mobile/{deviceId}")]
+        //public async Task<IActionResult> GetUserDetailsByDeviceId(string deviceId)
+        //{
+        //    var userResults = await _usersService.GetUserDetailsByDeviceId(deviceId);
+        //    return Ok(userResults);
+        //}
 
         [HttpGet("GetAll")]
         public async Task<IActionResult> GetAllUsers()

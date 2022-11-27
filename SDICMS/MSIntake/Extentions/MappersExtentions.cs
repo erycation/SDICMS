@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Common_Objects_V2.Intake.Models;
 using MSIntake.IntakeDomain.Model.Dtos;
+using MSIntake.IntakeDomain.Model.Response;
 
 namespace MSIntake.Extentions
 {
@@ -10,7 +11,8 @@ namespace MSIntake.Extentions
         {
 
             CreateMap<User, UserDto>()
-                .ForMember(s => s.UserRoleDtos, r => r.MapFrom(ur => ur.UserRoles));           
+                .ForMember(s => s.UserRoleDtos, r => r.MapFrom(ur => ur.UserRoles));
+            CreateMap<User, MobileResponse>();            
             CreateMap<Role, RoleDto>();
             CreateMap<UserRole, UserRoleDto>()
                 .ForMember(s => s.RoleDto, r => r.MapFrom(ur => ur.Role));
@@ -46,6 +48,8 @@ namespace MSIntake.Extentions
                .ForMember(d => d.DisabilityDto, r => r.MapFrom(ur => ur.Disability));
             CreateMap<Decease, DeceaseDto>();
             CreateMap<Department, DepartmentDto>();
+            CreateMap<LinkedDevice, LinkedDeviceDto>()
+                .ForMember(s => s.UserDto, r => r.MapFrom(ur => ur.User));
 
         }
     }

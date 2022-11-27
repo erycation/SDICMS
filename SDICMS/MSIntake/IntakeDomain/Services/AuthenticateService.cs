@@ -43,7 +43,7 @@ namespace MSIntake.IntakeDomain.Services
 
         public async Task<AuthToken> MobileLogin(MobileCredentials mobileCredentials)
         {
-            List<int> roleIds;
+
             var authToken = new AuthToken();
             var userResponse = await _userService.MobileAuthenticate(mobileCredentials);
 
@@ -53,15 +53,28 @@ namespace MSIntake.IntakeDomain.Services
             authToken.Firstname = userResponse.First_Name;
             authToken.Surname = userResponse.Last_Name;
             authToken.Token = _authManager.Authenticate(mobileCredentials.Username);
-            //authToken.UserRoleDtos = userResponse.UserRoleDtos;
-
-            //roleIds = userResponse.UserRoleDtos.Select(r => r.Role_Id).ToList();
-
-            //authToken.MenuAccessDtos = await _menuAccessService.GetMenuAccessByRolesId(roleIds);
-
+     
             return authToken;
         }
 
+        public async Task<AuthToken> LoginToLinkDevice(LinkUserToMobile linkUserToMobile)
+        {
+            List<int> roleIds;
+            var authToken = new AuthToken();
+            //Task<UserDto> LoginToLinkDevice(LinkUserToMobile linkUserToMobile)
+            var userResponse = await _userService.LoginToLinkDevice(linkUserToMobile);
+
+            authToken.Username = userResponse.User_Name;
+            authToken.UserId = userResponse.User_Id;
+            authToken.Success = true;
+            authToken.Firstname = userResponse.First_Name;
+            authToken.Surname = userResponse.Last_Name;
+            authToken.Token = _authManager.Authenticate(linkUserToMobile.Username);
+            authToken.UserRoleDtos = userResponse.UserRoleDtos;
+
+            return authToken;
+
+        }
         #region PrivcateMethod
 
         private List<MenuAccessDto> GetMenus(List<MenuAccessDto> menus)

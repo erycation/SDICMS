@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\deployment\msintake</_PublishTargetUrl>
+    <History>True|2022-11-16T06:27:48.7288652Z;True|2022-11-16T08:25:37.1267716+02:00;</History>
+  </PropertyGroup>
+</Project>

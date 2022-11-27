@@ -7,6 +7,7 @@ using MSIntake.IntakeDomain.Services.Interface;
 using MSIntake.Shared.Helpers;
 using MSIntake.IntakeDomain.Model.Requests;
 using MSIntake.Shared.Enum;
+using MSIntake.IntakeDomain.Model.Response;
 
 namespace MSIntake.IntakeDomain.Services
 {
@@ -14,12 +15,15 @@ namespace MSIntake.IntakeDomain.Services
     {
         private readonly IMapper _mapper;
         private readonly IUserRepository _userRepository;
+        private readonly ILinkedDeviceService _linkedDeviceService;
 
         public UsersService(IMapper mapper,
-                            IUserRepository userRepository)
+                            IUserRepository userRepository,
+                            ILinkedDeviceService linkedDeviceService)
         {
             _mapper = mapper;
             _userRepository = userRepository;
+            _linkedDeviceService = linkedDeviceService;
         }
 
         public async Task<UserDto> GetUserDetailsByUsername(string username)
@@ -33,6 +37,12 @@ namespace MSIntake.IntakeDomain.Services
             var responseUser = await _userRepository.GetUserDetailsById(userId);
             return _mapper.Map<UserDto>(responseUser);
         }
+
+        //public async Task<MobileResponse> GetUserDetailsByDeviceId(string deviceId)
+        //{
+        //    var responseUser = await _userRepository.GetUserDetailsByDeviceId(deviceId);
+        //    return _mapper.Map<MobileResponse>(responseUser);
+        //}
 
         public async Task<UserDto> CreateUser(RegisterUser registerUser)
         {
@@ -106,9 +116,39 @@ namespace MSIntake.IntakeDomain.Services
 
             if (!userResponse.Is_Active || userResponse.Is_Deleted)
                 throw new AppException($"User not active.");
-            //Verify Pin Here
-            //if (!BCryptNet.Verify(mobileCredentials.Password, userResponse.Password))
-            //    throw new AppException($"Incorrect password.{UserTriesLoginCount(userResponse)} attempts remaining.");
+ 
+            if (!BCryptNet.Verify(mobileCredentials.Password, userResponse.Password))
+                throw new AppException($"Incorrect password.{UserTriesLoginCount(userResponse)} attempts remaining.");
+
+            var deviceStatusResponse = await _linkedDeviceService.GetDeviceByDeviceId(mobileCredentials.DeviceId);
+            if (!deviceStatusResponse.Active)
+                throw new AppException($"Device linked not active.");
+
+            return _mapper.Map<UserDto>(userResponse);
+        }
+
+        public async Task<UserDto> LoginToLinkDevice(LinkUserToMobile linkUserToMobile)
+        {
+            var userResponse = await _userRepository.GetUserDetailsByUsername(linkUserToMobile.Username);
+
+            if (userResponse == null)
+                throw new AppException($"Username {linkUserToMobile.Username} not found.");
+
+            if (userResponse.Tries > 3)
+                throw new AppException($"User account is locked.");
+
+            if (!userResponse.Is_Active || userResponse.Is_Deleted)
+                throw new AppException($"User not active.");
+
+
+            var linkedDeviceDto = new LinkedDeviceDto
+            {
+                UserId = userResponse.User_Id,
+                DeviceId = linkUserToMobile.DeviceId,
+                Name = linkUserToMobile.DeviceName
+            };
+
+            await _linkedDeviceService.CreateLinkDevice(linkedDeviceDto);
 
             return _mapper.Map<UserDto>(userResponse);
         }

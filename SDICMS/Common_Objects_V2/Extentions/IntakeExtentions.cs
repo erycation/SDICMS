@@ -48,6 +48,7 @@ namespace Common_Objects_V2.Extentions
             services.AddScoped<IDisabilityTypeRepository, DisabilityTypeRepository>();
             services.AddScoped<IDeceaseRepository, DeceaseRepository>();
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped<ILinkedDeviceRepository, LinkedDeviceRepository>();
         }
     }
 }

@@ -7,5 +7,6 @@ namespace MSIntake.IntakeDomain.Services.Interface
     {
         Task<AuthToken> Login(Credentials credentials);
         Task<AuthToken> MobileLogin(MobileCredentials mobileCredentials);
+        Task<AuthToken> LoginToLinkDevice(LinkUserToMobile linkUserToMobile);
     }
 }

@@ -59,6 +59,7 @@ namespace Common_Objects_V2.Intake.Persistence
         public virtual DbSet<DisabilityType> DisabilityTypes { get; set; }
         public virtual DbSet<Decease> Deceases { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
-        
+        public virtual DbSet<LinkedDevice> LinkedDevices { get; set; }        
+
     }    
 }

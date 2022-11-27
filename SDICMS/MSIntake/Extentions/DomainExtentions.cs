@@ -43,6 +43,7 @@ namespace MSIntake.Extentions
             services.AddScoped<IDisabilityTypeService, DisabilityTypeService>();
             services.AddScoped<IDeceaseService, DeceaseService>();
             services.AddScoped<IDepartmentService, DepartmentService>();
+            services.AddScoped<ILinkedDeviceService, LinkedDeviceService>();
 
             var mapperConfig = new MapperConfiguration(mc =>
                                      {

@@ -14,7 +14,7 @@ namespace Common_Objects_V2.Intake.Models
             this.Groups = new HashSet<Group>();
             //this.Roles = new HashSet<Role>();
             this.UserRoles = new HashSet<UserRole>();
-            
+            this.LinkedDevices = new HashSet<LinkedDevice>();
         }
         [Key]
         public int User_Id { get; set; }
@@ -46,6 +46,8 @@ namespace Common_Objects_V2.Intake.Models
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         //public virtual ICollection<Role> Roles { get; set; }
         public virtual ICollection<UserRole> UserRoles { get; set; }
+        public virtual ICollection<LinkedDevice> LinkedDevices { get; set; }
         
+
     }
 }

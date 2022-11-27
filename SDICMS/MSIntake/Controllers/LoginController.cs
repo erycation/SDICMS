@@ -37,5 +37,16 @@ namespace MSIntake.Controllers
 
             return Ok(token);
         }
+
+        [HttpPost("Mobile/LinkDevice")]
+        public async Task<IActionResult> LoginToLinkDevice([FromBody] LinkUserToMobile linkUserToMobile)
+        {
+            var token = await _authenticateService.LoginToLinkDevice(linkUserToMobile);
+
+            if (!token.Success)
+                return BadRequest(new { message = token.Message });
+
+            return Ok(token);
+        }
     }
 }

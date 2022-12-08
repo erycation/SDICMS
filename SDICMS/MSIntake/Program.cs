@@ -27,11 +27,18 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     options.SaveToken = true;
     options.TokenValidationParameters = new TokenValidationParameters()
     {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        //ValidAudience = builder.Configuration["JWTSettings:Audience"],
-        //ValidIssuer = builder.Configuration["JWTSettings:Issuer"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWTSettings:SecretKey"]))
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey =
+                        new SymmetricSecurityKey(
+                            Encoding.ASCII.GetBytes(builder.Configuration.GetSection("JWTSettings:SecretKey").Value)),
+        ValidateIssuer = false,
+        ValidateAudience = false
+
+        ////ValidateIssuer = true,
+        ////ValidateAudience = true,
+        //////ValidAudience = builder.Configuration["JWTSettings:Audience"],
+        //////ValidIssuer = builder.Configuration["JWTSettings:Issuer"],
+        ////IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWTSettings:SecretKey"]))
     };
 });
 
@@ -79,6 +86,8 @@ app.UseRouting();
 app.UseAuthentication();
 
 app.UseAuthorization();
+
+//app.UseMiddleware<ApiKeyMiddleware>();
 
 app.UseMiddleware<ErrorHandlerMiddleware>();
 

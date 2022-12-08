@@ -7,7 +7,7 @@ using MSIntake.IntakeDomain.Services.Interface;
 
 namespace MSIntake.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase

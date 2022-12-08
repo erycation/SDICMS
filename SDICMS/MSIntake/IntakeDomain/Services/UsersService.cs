@@ -59,7 +59,7 @@ namespace MSIntake.IntakeDomain.Services
                 Initials = registerUser.Initials,
                 Email_Address = registerUser.Email_Address,
                 User_Name = registerUser.User_Name,
-                Password = BCryptNet.HashPassword(registerUser.Password),
+                PasswordHash = BCryptNet.HashPassword(registerUser.Password),
                 Date_Last_Login = registerUser.Date_Last_Login,
                 Created_By = registerUser.Created_By,
                 Date_Last_Modified = registerUser.Date_Last_Modified,
@@ -98,7 +98,7 @@ namespace MSIntake.IntakeDomain.Services
             if (!userResponse.Is_Active || userResponse.Is_Deleted)
                 throw new AppException($"User not active.");
 
-            if (!BCryptNet.Verify(credentials.Password, userResponse.Password))
+            if (!BCryptNet.Verify(credentials.Password, userResponse.PasswordHash))
                 throw new AppException($"Incorrect password.{UserTriesLoginCount(userResponse)} attempts remaining.");
 
             return _mapper.Map<UserDto>(userResponse);
@@ -117,7 +117,7 @@ namespace MSIntake.IntakeDomain.Services
             if (!userResponse.Is_Active || userResponse.Is_Deleted)
                 throw new AppException($"User not active.");
  
-            if (!BCryptNet.Verify(mobileCredentials.Password, userResponse.Password))
+            if (!BCryptNet.Verify(mobileCredentials.Password, userResponse.PasswordHash))
                 throw new AppException($"Incorrect password.{UserTriesLoginCount(userResponse)} attempts remaining.");
 
             var deviceStatusResponse = await _linkedDeviceService.GetDeviceByDeviceId(mobileCredentials.DeviceId);
@@ -165,7 +165,7 @@ namespace MSIntake.IntakeDomain.Services
             responseUser.PasswordExpiryDate = DateTime.Now.AddMonths(12);
             responseUser.Tries = 0;
             responseUser.AccountStatus = AccountStatus.Open.ToString();
-            responseUser.Password = BCryptNet.HashPassword(changePassword.Password);
+            responseUser.PasswordHash = BCryptNet.HashPassword(changePassword.Password);
 
             var responseUpdatedRole = await _userRepository.UpdateUser(responseUser);
             return _mapper.Map<UserDto>(responseUpdatedRole);

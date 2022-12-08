@@ -65,3 +65,4 @@ C:\Project\SourceCode\SDICMS\SDICMS\MSIntake\obj\Release\net6.0\refint\MSIntake.
 C:\Project\SourceCode\SDICMS\SDICMS\MSIntake\obj\Release\net6.0\MSIntake.pdb
 C:\Project\SourceCode\SDICMS\SDICMS\MSIntake\obj\Release\net6.0\MSIntake.genruntimeconfig.cache
 C:\Project\SourceCode\SDICMS\SDICMS\MSIntake\obj\Release\net6.0\ref\MSIntake.dll
+C:\Project\SourceCode\SDICMS\SDICMS\MSIntake\bin\Release\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

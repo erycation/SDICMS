@@ -35,13 +35,19 @@ namespace MSIntake.IntakeDomain.Services
         public async Task<LinkedDeviceDto> GetActiveLinkedDeviceByDeviceId(string deviceId)
         {
             var responseLinkedDevice = await _linkedDeviceRepository.GetActiveLinkedDeviceByDeviceId(deviceId);
-            return _mapper.Map<LinkedDeviceDto>(responseLinkedDevice);
+            return _mapper.Map<LinkedDeviceDto>(responseLinkedDevice) ?? new LinkedDeviceDto();
         }
 
         public async Task<LinkedDeviceDto> GetDeviceByDeviceId(string deviceId)
         {
             var responseLinkedDevice = await _linkedDeviceRepository.GetDeviceByDeviceId(deviceId);
             return _mapper.Map<LinkedDeviceDto>(responseLinkedDevice);
+        }
+
+        public async Task<List<LinkedDeviceDto>> GetLinkedDevicesByDeviceId(int userId)
+        {
+            var responseLinkedDevice = await _linkedDeviceRepository.GetLinkedDevicesByUserId(userId);
+            return _mapper.Map<List<LinkedDeviceDto>>(responseLinkedDevice);
         }
 
         public async Task<LinkedDeviceDto> UpdateLinkedDevice(LinkedDeviceDto linkedDeviceDto)

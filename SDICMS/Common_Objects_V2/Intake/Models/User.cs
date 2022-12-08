@@ -35,6 +35,7 @@ namespace Common_Objects_V2.Intake.Models
         public int? Tries { get; set; } = 0;
         public DateTime? PasswordExpiryDate { get; set; } = DateTime.Now.AddMonths(12);
         public string? FirstTimeLogin { get; set; } = "Yes";
+        public string? PasswordHash { get; set; }        
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         //public virtual ICollection<apl_User_Role_Delegation> apl_User_Role_Delegation { get; set; }
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

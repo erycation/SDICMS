@@ -21,5 +21,12 @@ namespace MSIntake.Controllers
             var linkedDeviceResults = await _linkedDeviceService.GetActiveLinkedDeviceByDeviceId(deviceId);
             return Ok(linkedDeviceResults);
         }
+
+        [HttpGet("All/{userId}")]
+        public async Task<IActionResult> GetLinkedDevicesByDeviceId(int userId)
+        {
+            var linkedDeviceResults = await _linkedDeviceService.GetLinkedDevicesByDeviceId(userId);
+            return Ok(linkedDeviceResults);
+        }
     }
 }

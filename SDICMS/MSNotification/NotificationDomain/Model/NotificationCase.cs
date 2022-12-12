@@ -2,7 +2,7 @@
 {
     public class NotificationCase
     {
-        public int CaseInformationID { get; set; }
+        public int CaseInformationId { get; set; }
         public int NotificacationId { get; set; }
         public string? MessageRefNumber { get; set; }
         public string? CaseStatus { get; set; }
@@ -30,11 +30,13 @@
         public string? RankDescription { get; set; }
         public string? POName { get; set; }
         public string? POSurname { get; set; }
+        public int ChildInformationId { get; set; }        
         public string? ChildName { get; set; }
         public DateTime? ChildDateOfBirth { get; set; }
         public DateTime? OfficerAssignedDate { get; set; }
         public DateTime? ArrestDate { get; set; }
         public string? ArrestTime { get; set; }
+        public string? OffenseType { get; set; }        
 
     }
 }

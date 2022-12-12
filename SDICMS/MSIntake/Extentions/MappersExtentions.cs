@@ -50,6 +50,7 @@ namespace MSIntake.Extentions
             CreateMap<Department, DepartmentDto>();
             CreateMap<LinkedDevice, LinkedDeviceDto>()
                 .ForMember(s => s.UserDto, r => r.MapFrom(ur => ur.User));
+            CreateMap<ProbationOfficer, ProbationOfficerDto>();
 
         }
     }

@@ -200,6 +200,12 @@ namespace MSIntake.IntakeDomain.Services
             return _mapper.Map<UserDto>(responseUpdatedRole);
         }
 
+        public async Task<List<ProbationOfficerDto>> GetProbationOfficersBySupervisorId(int supervisorId)
+        {
+            var probationOfficerResults = await _userRepository.GetProbationOfficersBySupervisorId(supervisorId);
+            return _mapper.Map<List<ProbationOfficerDto>>(probationOfficerResults);
+        }
+
         #region Private_Methods
 
         private int UserTriesLoginCount(User user)

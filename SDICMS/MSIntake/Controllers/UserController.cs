@@ -7,7 +7,7 @@ using MSIntake.IntakeDomain.Services.Interface;
 
 namespace MSIntake.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -74,6 +74,12 @@ namespace MSIntake.Controllers
         {
             var userResults = await _usersService.ResetPassword(changePassword);
             return Ok(new { message = $"Password successfully updated.", data = userResults });
+        }
+        [HttpGet("ProbationOfficers/{supervisorId}")]
+        public async Task<IActionResult> GetProbationOfficersBySupervisorId(int supervisorId)
+        {
+            var probationOfficersResults = await _usersService.GetProbationOfficersBySupervisorId(supervisorId);
+            return Ok(probationOfficersResults);
         }
     }
 }

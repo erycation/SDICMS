@@ -11,8 +11,8 @@ namespace MSChildNotification.NotificationDomain.Model
             //this.CaseInformations = new HashSet<CaseInformation>();
         }
         [Key]
-        public int ChildInformationID { get; set; }
-        public decimal? PersonID { get; set; }
+        public int ChildInformationId { get; set; }
+        public decimal? PersonId { get; set; }
         public string? PersonName { get; set; }
         public string? PersonLastName { get; set; }
         public DateTime? PersonDateOfBirth { get; set; }
@@ -22,9 +22,9 @@ namespace MSChildNotification.NotificationDomain.Model
         public DateTime? PersonArrestDateTime { get; set; }
         public DateTime? PersonReleasedDate { get; set; }
         [ForeignKey("Gender")]
-        public int? PersonGenderCodeID { get; set; }
+        public int? PersonGenderCodeId { get; set; }
         [ForeignKey("Language")]
-        public int? PersonLanguageCodeID { get; set; }
+        public int? PersonLanguageCodeId { get; set; }
         [ForeignKey("Race")]
         public int? RaceId { get; set; }
         [ForeignKey("IdentityType")]

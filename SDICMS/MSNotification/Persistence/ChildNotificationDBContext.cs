@@ -31,6 +31,8 @@ namespace MSChildNotification.Persistence
         public virtual DbSet<PoliceStation> PoliceStations { get; set; }
         public virtual DbSet<Province> Provinces { get; set; }
         public virtual DbSet<Race> Races { get; set; }
+        public virtual DbSet<NotificationCase> NotificationCases { get; set; }
+        public virtual DbSet<OffenseType> OffenseTypes { get; set; }
 
     }
 }

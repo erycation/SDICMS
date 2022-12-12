@@ -3,6 +3,7 @@
 using Common_Objects_V2.Intake.Models;
 using Common_Objects_V2.Intake.Persistence;
 using Common_Objects_V2.Intake.Repository.Interface;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace Common_Objects_V2.Intake.Repository
@@ -42,6 +43,12 @@ namespace Common_Objects_V2.Intake.Repository
             _intakeDBContext.Users.Update(user);
             await _intakeDBContext.SaveChangesAsync();
             return user;
+        }
+
+        public async Task<List<ProbationOfficer>> GetProbationOfficersBySupervisorId(int supervisorId)
+        {
+            return await _intakeDBContext.ProbationOfficers.FromSqlRaw("INTAKE_GetProbationOfficerBySupervisorId @supervisorId",
+                                                                       new SqlParameter("@supervisorId", supervisorId)).ToListAsync();
         }
     }
 }

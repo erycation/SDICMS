@@ -2,8 +2,8 @@
 {
     public class ChildInformationDto
     {
-        public int ChildInformationID { get; set; }
-        public decimal? PersonID { get; set; }
+        public int ChildInformationId { get; set; }
+        public decimal? PersonId { get; set; }
         public string? PersonName { get; set; }
         public string? PersonLastName { get; set; }
         public DateTime? PersonDateOfBirth { get; set; }

@@ -18,7 +18,7 @@ namespace Common_Objects_V2.Intake.Persistence
             modelBuilder.Entity<MenuAccessRole>()
                     .HasKey(c => new { c.Menu_Access_Id, c.Role_Id });
             //modelBuilder.Entity<StockCountSheetReportDto>().HasNoKey();
-            //modelBuilder.Entity<StockTakingDto>().HasNoKey();
+            modelBuilder.Entity<ProbationOfficer>().HasNoKey();
         }
 
         public virtual DbSet<User> Users { get; set; }
@@ -59,7 +59,8 @@ namespace Common_Objects_V2.Intake.Persistence
         public virtual DbSet<DisabilityType> DisabilityTypes { get; set; }
         public virtual DbSet<Decease> Deceases { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
-        public virtual DbSet<LinkedDevice> LinkedDevices { get; set; }        
+        public virtual DbSet<LinkedDevice> LinkedDevices { get; set; }
+        public virtual DbSet<ProbationOfficer> ProbationOfficers { get; set; }
 
     }    
 }

@@ -18,5 +18,6 @@ namespace MSIntake.IntakeDomain.Services.Interface
         Task<UserDto> ResetPassword(ChangePassword changePassword);
         Task<UserDto> ActivateUser(UserDto userDto);
         Task<UserDto> DeleteUser(UserDto userDto);
+        Task<List<ProbationOfficerDto>> GetProbationOfficersBySupervisorId(int supervisorId);
     }
 }

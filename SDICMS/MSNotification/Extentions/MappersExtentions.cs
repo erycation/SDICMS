@@ -26,7 +26,8 @@ namespace MSChildNotification.Extentions
             CreateMap<Province, ProvinceDto>();
             CreateMap<Race, RaceDto>();
             CreateMap<OffenseType, OffenseTypeDto>();
-            
+            CreateMap<CaseInformation, CaseInformationDto>();
+
         }
     }
 }

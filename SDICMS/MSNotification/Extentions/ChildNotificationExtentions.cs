@@ -21,11 +21,13 @@ namespace MSChildNotification.Extentions
             services.AddScoped<IChildInformationService, ChildInformationService>();
             services.AddScoped<IOffenseTypeRepository, OffenseTypeRepository>();
             services.AddScoped<IOffenseTypeService, OffenseTypeService>();
+            services.AddScoped<ICaseInformationRepository, CaseInformationRepository>();
+            services.AddScoped<ICaseInformationService, CaseInformationService>();
 
             var mapperConfig = new MapperConfiguration(mc =>
-                    {
-                        mc.AddProfile(new MappersExtentions());
-                    });
+                        {
+                            mc.AddProfile(new MappersExtentions());
+                        });
 
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);

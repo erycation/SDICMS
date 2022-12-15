@@ -12,8 +12,9 @@ namespace MSChildNotification.NotificationDomain.Model
         public string? MessageSourceName { get; set; }
         public string? MessageSource { get; set; }
         public DateTime? NotificationDate { get; set; }
-        public byte[] Timestamp { get; set; }
-        public string NotificationTypeVersion { get; set; }
+        [Timestamp]
+        public byte[]? Timestamp { get; set; }
+        public string? NotificationTypeVersion { get; set; }
         public int? ModuleId { get; set; }
         public int? RespondStatus { get; set; }
 

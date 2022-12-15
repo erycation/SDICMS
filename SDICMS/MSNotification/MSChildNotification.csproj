@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <Folder Include="NotificationDomain\Model\Response\" />
-    <Folder Include="NotificationDomain\Model\Request\" />
     <Folder Include="Shared\Helpers\" />
     <Folder Include="Shared\Utils\" />
   </ItemGroup>

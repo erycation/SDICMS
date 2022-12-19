@@ -16,6 +16,7 @@ namespace MSIntake.IntakeDomain.Services.Interface
         Task<UserDto> MobileAuthenticate(MobileCredentials mobileCredentials);
         Task<UserDto> LoginToLinkDevice(LinkUserToMobile linkUserToMobile);
         Task<UserDto> ResetPassword(ChangePassword changePassword);
+        Task<UserDto> ForgetPassword(ForgetUserPassword forgetUserPassword);
         Task<UserDto> ActivateUser(UserDto userDto);
         Task<UserDto> DeleteUser(UserDto userDto);
         Task<List<ProbationOfficerDto>> GetProbationOfficersBySupervisorId(int supervisorId);

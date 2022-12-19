@@ -1,0 +1,49 @@
+{
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/sdicms/CaseInformation/AssignToPoc",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamPathTemplate": "/api/CaseInformation/AssignToPoc",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7118
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/sdicms/ChildInformation/Get/{childInformationById}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "DownstreamPathTemplate": "/api/ChildInformation/Get/{childInformationById}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7118
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/sdicms/Notification/Get/{supervisorName}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "DownstreamPathTemplate": "/api/Notification/Get/{supervisorName}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7118
+        }
+      ]
+    }
+
+  ]
+}

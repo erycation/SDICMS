@@ -8,6 +8,7 @@ using MSIntake.Shared.Helpers;
 using MSIntake.IntakeDomain.Model.Requests;
 using MSIntake.Shared.Enum;
 using MSIntake.IntakeDomain.Model.Response;
+using PasswordGenerator;
 
 namespace MSIntake.IntakeDomain.Services
 {
@@ -169,6 +170,23 @@ namespace MSIntake.IntakeDomain.Services
 
             var responseUpdatedRole = await _userRepository.UpdateUser(responseUser);
             return _mapper.Map<UserDto>(responseUpdatedRole);
+        }
+
+        public async Task<UserDto> ForgetPassword(ForgetUserPassword forgetUserPassword)
+        {
+            var responseUser = await _userRepository.GetUserDetailsByUsername(forgetUserPassword.Username);
+            if (responseUser == null)
+                throw new AppException($"Username not found.");
+            if (string.IsNullOrEmpty(responseUser?.Email_Address))
+                throw new AppException($"Email address not found.");
+            var pwd = new Password(includeLowercase: true, includeUppercase: true, includeNumeric: true, includeSpecial: true, passwordLength: 10);
+            var password = pwd.Next();
+            responseUser.PasswordHash = BCryptNet.HashPassword(password);
+            responseUser.Tries = 0;
+            responseUser.PasswordExpiryDate = DateTime.Now.AddMonths(12);
+            //send email for updated password
+            var responseUpdatedUser = await _userRepository.UpdateUser(responseUser);
+            return _mapper.Map<UserDto>(responseUpdatedUser);
         }
 
         public async Task<UserDto> DeleteUser(UserDto userDto)

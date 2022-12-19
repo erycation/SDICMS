@@ -75,6 +75,14 @@ namespace MSIntake.Controllers
             var userResults = await _usersService.ResetPassword(changePassword);
             return Ok(new { message = $"Password successfully updated.", data = userResults });
         }
+
+        [HttpPut("ForgetPassword")]
+        public async Task<IActionResult> ForgetPassword([FromBody] ForgetUserPassword forgetUserPassword)
+        {
+            var userResults = await _usersService.ForgetPassword(forgetUserPassword);
+            return Ok(new { message = $"Your new password is send to {userResults.Email_Address}"});
+        }
+
         [HttpGet("ProbationOfficers/{supervisorId}")]
         public async Task<IActionResult> GetProbationOfficersBySupervisorId(int supervisorId)
         {

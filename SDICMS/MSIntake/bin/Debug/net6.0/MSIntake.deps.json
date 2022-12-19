@@ -12,6 +12,7 @@
           "BCrypt.Net-Next": "4.0.3",
           "Common_Objects_V2": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.11",
+          "PasswordGenerator": "2.1.0",
           "Swashbuckle.AspNetCore": "6.2.3",
           "System.IdentityModel.Tokens.Jwt": "6.24.0"
         },
@@ -415,6 +416,14 @@
           "System.Threading.Timer": "4.3.0",
           "System.Xml.ReaderWriter": "4.3.0",
           "System.Xml.XDocument": "4.3.0"
+        }
+      },
+      "PasswordGenerator/2.1.0": {
+        "runtime": {
+          "lib/netstandard2.0/PasswordGenerator.dll": {
+            "assemblyVersion": "2.1.0.0",
+            "fileVersion": "2.1.0.0"
+          }
         }
       },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
@@ -1556,6 +1565,13 @@
       "sha512": "sha512-WcSp3+vP+yHNgS8EV5J7pZ9IRpeDuARBPN28by8zqff1wJQXm26PVU8L3/fYLBJVU7BtDyqNVWq2KlCVvSSR4A==",
       "path": "netstandard.library/1.6.1",
       "hashPath": "netstandard.library.1.6.1.nupkg.sha512"
+    },
+    "PasswordGenerator/2.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-G70cCeAOYCk/uTuFw5PBGpYY9kmBZyzld7tphachvyU514PowMRDYyKwTefxIHNGWrhXY2d1DV5B1tDEnTtY3A==",
+      "path": "passwordgenerator/2.1.0",
+      "hashPath": "passwordgenerator.2.1.0.nupkg.sha512"
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
       "type": "package",

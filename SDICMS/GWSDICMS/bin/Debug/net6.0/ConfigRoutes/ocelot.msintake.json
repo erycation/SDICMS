@@ -1,0 +1,88 @@
+{
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/sdicms/Login",
+      "UpstreamHttpMethod": ["POST"],
+      "DownstreamPathTemplate": "/api/Login",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7212
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/sdicms/Login/Mobile",
+      "UpstreamHttpMethod": ["POST"],
+      "DownstreamPathTemplate": "/api/Login/Mobile",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7212
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/sdicms/Mobile/LinkDevice",
+      "UpstreamHttpMethod": ["POST"],
+      "DownstreamPathTemplate": "/api/Mobile/LinkDevice",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7212
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/sdicms/LinkedDevice/All/{userId}",
+      "UpstreamHttpMethod": ["GET"],
+      "DownstreamPathTemplate": "/api/LinkedDevice/All/{userId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7212
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/sdicms/LinkedDevice/Active/{deviceId}",
+      "UpstreamHttpMethod": ["GET"],
+      "DownstreamPathTemplate": "/api/LinkedDevice/Active/{deviceId}}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7212
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/sdicms/User/ProbationOfficers/{supervisorId}",
+      "UpstreamHttpMethod": ["GET"],
+      "DownstreamPathTemplate": "/api/User/ProbationOfficers/{supervisorId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7212
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/sdicms/User/ForgetPassword",
+      "UpstreamHttpMethod": ["POST"],
+      "DownstreamPathTemplate": "/api/User/ForgetPassword",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7212
+        }
+      ]
+    }
+  ]
+}
